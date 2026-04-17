@@ -33,23 +33,27 @@ This method rescales values to a fixed range (0 to 1). It maintains the relative
 
 (df[col] - df[col].mean()) / df[col].std()
 
-Z-score normalization standardizes data by centering it around the mean (0) and scaling it using standard deviation. It is useful when data has variation or outliers.
+Z-score normalization standardizes data by centering it around the mean (0) and scaling it using standard deviation. 
+It is useful when data has variation or outliers.
 
 # Decimal Scaling:
 
 df[col] / 10^n
 
-This technique reduces the magnitude of values by shifting the decimal point. It simplifies large numbers while preserving their proportions.
+This technique reduces the magnitude of values by shifting the decimal point. 
+It simplifies large numbers while preserving their proportions.
 
 # Label Encoding:
 LabelEncoder()
 
-Converts categorical text into numeric form by assigning each category a unique integer. It is suitable when categories have a logical order or ranking.
+Converts categorical text into numeric form by assigning each category a unique integer. 
+It is suitable when categories have a logical order or ranking.
 
 # One-Hot Encoding:
 pd.get_dummies()
 
-Transforms categorical data into multiple binary columns. Each category is represented independently, preventing incorrect ordinal relationships.
+Transforms categorical data into multiple binary columns. 
+Each category is represented independently, preventing incorrect ordinal relationships.
 
 # Dummy Encoding:
 drop_first=True
