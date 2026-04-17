@@ -1,81 +1,72 @@
-# AIM: DATA BINNING AND DATA FORMATTING USING PYTHON
-
+# AIM: DATA NORMALIZATION AND DATA TYPE CONVERSION
 
 # THEORY:
-Data preprocessing is a crucial step in data analysis that involves transforming raw and unorganized data into a clean, structured, and meaningful format.
-Two important preprocessing techniques are data binning and data formatting.
+Data conversion is the process of transforming data from one format or type into another so that it can be effectively used for analysis and processing.
 
-# Data binning:
-Data binning is the process of converting continuous numerical data into a finite number of intervals or categories called bins.
+pd.read_csv() → Converts external file data into a DataFrame.
+LabelEncoder() → Converts categorical (text) data into numeric form.
+pd.get_dummies() → Converts categorical variables into binary (0/1) columns.
 
-* It helps in reducing noise and handling minor fluctuations in data.
-  
-* It simplifies large datasets and improves data interpretation.
-  
-* It is useful for identifying patterns and trends.
+Data normalization is the process of scaling numerical data into a consistent range to improve comparability and performance.
+1. Min-Max Normalization
+2. Z-Score Normalization
+3. Decimal Scaling
+4. Label Encoding
+5. One-Hot Encoding
+6. Dummy Encoding
 
-* In Python, binning is performed using the pandas.cut() function.
+# Data Handling (Pandas & NumPy):
+import pandas as pd, import numpy as np
+These libraries are used to manage and process data. Pandas organizes data into tables (DataFrames), 
+while NumPy supports numerical calculations required for transformations.
 
-* Data values are divided into ranges and labeled (e.g., Low, Medium, High).
+pd.DataFrame(data)
+Converts raw data into structured tabular form, enabling easier analysis and manipulation.
 
+# Min-Max Normalization:
 
-# Data Formatting:
+(df[col] - df[col].min()) / (df[col].max() - df[col].min())
 
-Data formatting refers to organizing and transforming data into a consistent and usable form for analysis. It ensures uniformity and improves data quality.
-It includes the following operations:
+This method rescales values to a fixed range (0 to 1). It maintains the relative differences between values but removes the effect of scale, making different features comparable.
 
-# 1. Data Type Conversion:
-This involves changing the data type of a column into a suitable format.
+# Z-Score Normalization:
 
-Example: Converting integer to float or string using .astype()
-It is important because some operations (like mathematical calculations) require specific data types.
-Incorrect data types can lead to errors or wrong results.
+(df[col] - df[col].mean()) / df[col].std()
 
-# 2. String Formatting:
-This ensures that all text data follows a consistent format.
+Z-score normalization standardizes data by centering it around the mean (0) and scaling it using standard deviation. It is useful when data has variation or outliers.
 
-Functions like .str.upper() and .str.lower() are used.
-It removes inconsistencies like “apple”, “Apple”, and “APPLE” being treated as different values.
+# Decimal Scaling:
 
-# 3. Rounding Numerical Values:
-This involves reducing the number of decimal places in numerical data.
+df[col] / 10^n
 
-Done using .round()
-Helps in improving readability and maintaining uniform precision.
-Prevents unnecessary long decimal values.
+This technique reduces the magnitude of values by shifting the decimal point. It simplifies large numbers while preserving their proportions.
 
-# 4. Sorting Data:
-Sorting arranges data in ascending or descending order.
+# Label Encoding:
+LabelEncoder()
 
-Done using .sort_values()
-Makes it easier to analyze trends and compare values.
+Converts categorical text into numeric form by assigning each category a unique integer. It is suitable when categories have a logical order or ranking.
 
-# 5. Extracting Unique Values:
-This helps in identifying all distinct values in a column.
+# One-Hot Encoding:
+pd.get_dummies()
 
-Done using .unique()
-Useful for understanding categories or types present in data.
+Transforms categorical data into multiple binary columns. Each category is represented independently, preventing incorrect ordinal relationships.
 
-# 6. Renaming Columns (if applicable):
-Column names are modified to make them more meaningful and easy to understand.
+# Dummy Encoding:
+drop_first=True
 
-Helps in better readability and interpretation of data.
-Avoids confusion during analysis.
+Removes one category column to avoid redundancy and multicollinearity, ensuring better performance in statistical models.
 
-# Importance of Data Formatting: 
-1. Ensures data consistency and accuracy.
+# Reading Dataset:
+pd.read_csv()
 
-2. Improves readability and presentation.
+Used to import external datasets into Python for processing, enabling real-world data analysis.
 
-3. Reduces errors during analysis.
-
-4. Makes data suitable for further processing and visualization.
+# Multi-Column Operations:
+Applying normalization on multiple columns together.
+Improves efficiency and consistency by performing transformations across several features simultaneously instead of individually.
 
 
 # CONCLUSION:
-In this experiment, data binning and data formatting techniques were successfully applied using Python. 
-Binning helped in grouping continuous data into meaningful categories, making it easier to analyze.
-Data formatting improved the dataset by ensuring consistency through type conversion, string standardization, rounding, and sorting.
-These preprocessing techniques are essential for accurate analysis and play a vital role in real-world data handling.
-
-
+This experiment focuses on transforming raw data into a structured and standardized format.
+Normalization techniques (Min-Max, Z-score, Decimal Scaling) adjust numerical values, while encoding techniques convert categorical data into machine-readable form.
+These processes ensure that data becomes consistent, comparable, and suitable for analysis and machine learning applications.
